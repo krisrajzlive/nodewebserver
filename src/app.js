@@ -5,24 +5,33 @@ const xapp = express()
 
 const staticfilepath = path.join(__dirname,'../public')
 
+xapp.set('view engine', 'hbs')
 xapp.use(express.static(staticfilepath))
 
 //app.com
-/*xapp.get('', (req, res) => {
-    res.send('Hello world')
-})*/
+xapp.get('', (req, res) => {
+    res.render("index", {
+        title: 'Weather App',
+        name: 'Raj'
+    })
+})
 
 //app.com/help
-/*
+
 xapp.get('/help', (req, res) => {
-    res.send('help page')
-})*/
+    res.render('help', {
+        title: 'Hero Xtreme 160R Stealth Edition'
+    })
+})
 
 //app.com/about
-/*
+
 xapp.get('/about', (req, res) => {
-    res.send('About page')
-})*/
+    res.render('about', {
+        title: 'About me',
+        name: 'Mohandas Karamchand Gandhi'
+    })
+})
 
 //app.com/weather
 xapp.get('/weather', (req, res) => {
