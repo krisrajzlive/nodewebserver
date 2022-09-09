@@ -4,8 +4,13 @@ const express = require('express')
 const xapp = express()
 
 const staticfilepath = path.join(__dirname,'../public')
+const viewsPath = path.join(__dirname, '../templates')
 
 xapp.set('view engine', 'hbs')
+
+//setup custom view directory, default is views directory
+xapp.set('views',viewsPath)
+//setup custom files directory
 xapp.use(express.static(staticfilepath))
 
 //app.com
