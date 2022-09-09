@@ -1,22 +1,28 @@
+const path = require('path')
 const express = require('express')
 
 const xapp = express()
 
-//app.com
-xapp.get('', (req, res) => {
-    res.send('Hello world')
-})
+const staticfilepath = path.join(__dirname,'../public')
 
+xapp.use(express.static(staticfilepath))
+
+//app.com
+/*xapp.get('', (req, res) => {
+    res.send('Hello world')
+})*/
 
 //app.com/help
+/*
 xapp.get('/help', (req, res) => {
     res.send('help page')
-})
+})*/
 
 //app.com/about
+/*
 xapp.get('/about', (req, res) => {
     res.send('About page')
-})
+})*/
 
 //app.com/weather
 xapp.get('/weather', (req, res) => {
