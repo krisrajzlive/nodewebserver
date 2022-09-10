@@ -1,17 +1,23 @@
 const path = require('path')
 const express = require('express')
+const hbs = require('hbs')
 
 const xapp = express()
 
-const staticfilepath = path.join(__dirname,'../public')
-const viewsPath = path.join(__dirname, '../templates')
+const staticfilePath = path.join(__dirname,'../public')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 xapp.set('view engine', 'hbs')
 
 //setup custom view directory, default is views directory
-xapp.set('views',viewsPath)
+xapp.set('views', viewsPath)
+
+//setup partials directory path
+hbs.registerPartials(partialsPath)
+
 //setup custom files directory
-xapp.use(express.static(staticfilepath))
+xapp.set(express.static(staticfilePath))
 
 //app.com
 xapp.get('', (req, res) => {
