@@ -1,8 +1,12 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+const cors = require('cors')
 
 const xapp = express()
+xapp.use(cors())
 
 const staticfilePath = path.join(__dirname,'../public')
 const viewsPath = path.join(__dirname, '../templates/views')
@@ -51,11 +55,38 @@ xapp.get('/about', (req, res) => {
 
 //app.com/weather
 xapp.get('/weather', (req, res) => {
-    res.send('Weather page',{
-        title: 'Weather',
-        description: 'hmmmm thinking of it...',
-        name: 'Raj'
-    })
+
+    if(!req.query.address)
+    {
+        return res.send({error:'Please provide an address to search'})
+    }
+
+    geocode (req.query.address, (error, {latitude, longitude, location} = {}) => {
+        if (error)
+            return res.send({error: error})
+        
+        let locationdet = {
+            location,
+            latitude,
+            longitude
+        }
+
+        forecast(latitude, longitude, (error, {weather, temperature, feelslike} = {}) => {
+            if (error)
+                return res.send({error: error})
+            
+            let weatherdet = {
+                weather,
+                temperature,
+                feelslike
+            }
+
+            res.send({
+                locationDetails: locationdet, 
+                weatherDetails: weatherdet
+            })
+        })  
+    })    
 })
 
 //anything like help/iot will be redirected here
