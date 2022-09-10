@@ -17,13 +17,14 @@ xapp.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
 //setup custom files directory
-xapp.set(express.static(staticfilePath))
+console.log('static file path: ', staticfilePath)
+xapp.use(express.static(staticfilePath))
 
 //app.com
 xapp.get('', (req, res) => {
     res.render("index", {
-        title: 'Weather App',
-        name: 'Raj'
+        title: 'Home',
+        name: 'This is home page'
     })
 })
 
@@ -31,7 +32,8 @@ xapp.get('', (req, res) => {
 
 xapp.get('/help', (req, res) => {
     res.render('help', {
-        title: 'Hero Xtreme 160R Stealth Edition'
+        title: 'Help',
+        name: 'Hero Xtreme 160R Stealth Edition'
     })
 })
 
@@ -46,7 +48,10 @@ xapp.get('/about', (req, res) => {
 
 //app.com/weather
 xapp.get('/weather', (req, res) => {
-    res.send('Weather page')
+    res.send('Weather page',{
+        title: 'Weather',
+        name: 'Weather forecast'
+    })
 })
 
 xapp.listen(3000, () => {
