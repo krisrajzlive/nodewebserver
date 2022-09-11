@@ -28,7 +28,7 @@ xapp.use(express.static(staticfilePath))
 //app.com
 xapp.get('', (req, res) => {
     res.render("index", {
-        title: 'Home',
+        title: 'Weather',
         description: 'Weather forecast',
         name: 'Raj'
     })
@@ -39,7 +39,7 @@ xapp.get('', (req, res) => {
 xapp.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
-        description: 'Hero Xtreme 160R Stealth Edition',
+        description: 'Building help under progress.',
         name: 'Raj'
     })
 })
@@ -49,7 +49,7 @@ xapp.get('/help', (req, res) => {
 xapp.get('/about', (req, res) => {
     res.render('about', {
         title: 'About me',
-        description: 'This is about myself',
+        description: 'Sea shore temple',
         name: 'Raj'
     })
 })
