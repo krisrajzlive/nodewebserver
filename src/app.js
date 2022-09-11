@@ -6,6 +6,7 @@ const forecast = require('./utils/forecast')
 const cors = require('cors')
 
 const xapp = express()
+const port = process.env.PORT || 3000 // 3000 is the default port, when runs on heroku, it picks the environment port
 xapp.use(cors())
 
 const staticfilePath = path.join(__dirname,'../public')
@@ -107,6 +108,6 @@ xapp.get('*',(req, res) => {
     })
 })
 
-xapp.listen(3000, () => {
-    console.log('Server is up on port 3000')
+xapp.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })

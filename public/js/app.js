@@ -7,7 +7,7 @@ weatherForm.addEventListener('submit', (event) => {
     event.preventDefault() //prevents form refresh
     const location = search.value
 
-    const weatherapiUrl = 'http://localhost:3000/weather?address=' + location
+    const weatherapiUrl = '/weather?address=' + location
 
     alertSection.textContent = 'Fetching weather data ...'
 
